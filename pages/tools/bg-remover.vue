@@ -175,7 +175,8 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+
+import { ref } from 'vue';
 
 const originalUrl = ref(null);
 const outputUrl = ref(null);
@@ -184,8 +185,6 @@ const error = ref(null);
 const fileInput = ref(null);
 const sliderValue = ref(50);
 
-// ⛔ Replace with your real API key from remove.bg
-const REMOVE_BG_API_KEY = '6WUXthRVkwNUztuXCqvF2GUW';
 
 const demoImages = [
   { id: 1, url: 'https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=400' },
@@ -231,15 +230,11 @@ const processFile = async (file) => {
   originalUrl.value = URL.createObjectURL(file);
 
   const formData = new FormData();
-  formData.append('image_file', file);
-  formData.append('size', 'auto');
+  formData.append('file', file);
 
   try {
-    const response = await fetch('https://api.remove.bg/v1.0/removebg', {
+    const response = await fetch('http://localhost:8000/remove-bg/', {
       method: 'POST',
-      headers: {
-        'X-Api-Key': REMOVE_BG_API_KEY,
-      },
       body: formData,
     });
 
@@ -251,6 +246,7 @@ const processFile = async (file) => {
     const blob = await response.blob();
     outputUrl.value = URL.createObjectURL(blob);
   } catch (err) {
+    console.log(err)
     error.value = 'Error removing background: ' + err.message;
   } finally {
     sliderPosition1.value = 0;

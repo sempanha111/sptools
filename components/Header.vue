@@ -31,7 +31,10 @@
                       <p class="text-sm text-slate-500">Generate marketing copy</p>
                     </div>
                   </a>
+
+                  
                   <NuxtLink  to="/tools/bg-remover" class="flex items-start space-x-3 p-3 rounded-lg hover:bg-slate-100 transition-colors" >
+                    
                     <div class="bg-blue-100 text-blue-600 w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0">
                       <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                         stroke-width="1.5" stroke="currentColor">
@@ -39,15 +42,16 @@
                           d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
                       </svg>
                     </div>
+
                     <div>
                       <p class="font-semibold text-slate-800">BG Remover</p>
                       <p class="text-sm text-slate-500">Erase image backgrounds</p>
                     </div>
+
                   </NuxtLink>
 
-                  <a href="#" class="flex items-start space-x-3 p-3 rounded-lg hover:bg-slate-100 transition-colors">
-                    <div
-                      class="bg-blue-100 text-blue-600 w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <NuxtLink to="/tools/image-upscaler" class="flex items-start space-x-3 p-3 rounded-lg hover:bg-slate-100 transition-colors">
+                    <div class="bg-blue-100 text-blue-600 w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0">
                       <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                         stroke-width="1.5" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -57,7 +61,7 @@
                       <p class="font-semibold text-slate-800">Image Upscaler</p>
                       <p class="text-sm text-slate-500">Increase photo resolution</p>
                     </div>
-                  </a>
+                  </NuxtLink>
                   <a href="#" class="flex items-start space-x-3 p-3 rounded-lg hover:bg-slate-100 transition-colors">
                     <div
                       class="bg-blue-100 text-blue-600 w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0">
