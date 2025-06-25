@@ -14,8 +14,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
               </svg>
             </a>
-            <div
-              class="absolute top-full -left-1/2 mt-3 w-screen max-w-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:translate-y-0 translate-y-2">
+            <div class="absolute top-full -left-1/2 mt-3 w-screen max-w-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:translate-y-0 translate-y-2">
               <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-6">
                 <div class="grid grid-cols-2 gap-6">
                   <a href="#" class="flex items-start space-x-3 p-3 rounded-lg hover:bg-slate-100 transition-colors">
@@ -84,6 +83,92 @@
               </div>
             </div>
           </div>
+
+
+          <div class="group relative">
+            <a href="#features"
+              class="text-slate-600 hover:text-blue-600 font-semibold px-4 py-2 rounded-lg transition-colors flex items-center">
+                Downloder <svg class="w-4 h-4 ml-1 transition-transform group-hover:rotate-180"
+                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+              </svg>
+            </a>
+            <div class="absolute top-full -left-1/2 mt-3 w-screen max-w-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:translate-y-0 translate-y-2">
+              <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-6">
+                <div class="grid grid-cols-2 gap-6">
+                  <NuxtLink to="/download/tiktok-downloader" class="flex items-start space-x-3 p-3 rounded-lg hover:bg-slate-100 transition-colors">
+                    <div
+                      class="bg-blue-100 text-blue-600 w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M6.75 7.5l3 2.25-3 2.25m3 0h3m-3 2.25l3 2.25M16.5 7.5l3 2.25-3 2.25m3 0h3m-3 2.25l3 2.25M12 21v-2.25m0 .383l-.621.622a2.25 2.25 0 01-3.182 0l-1.94-1.94a2.25 2.25 0 010-3.182l6.22-6.22a2.25 2.25 0 013.182 0l1.94 1.94a2.25 2.25 0 010 3.182l-6.22 6.22a2.25 2.25 0 01-3.182 0z" />
+                      </svg></div>
+                    <div>
+                      <p class="font-semibold text-slate-800">TikTok Download</p>
+                      <p class="text-sm text-slate-500">Easy Download Without Watermark</p>
+                    </div>
+                  </NuxtLink>
+
+                  
+                  <NuxtLink  to="/tools/bg-remover" class="flex items-start space-x-3 p-3 rounded-lg hover:bg-slate-100 transition-colors" >
+                    
+                    <div class="bg-blue-100 text-blue-600 w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
+                      </svg>
+                    </div>
+
+                    <div>
+                      <p class="font-semibold text-slate-800">BG Remover</p>
+                      <p class="text-sm text-slate-500">Erase image backgrounds</p>
+                    </div>
+
+                  </NuxtLink>
+
+                  <NuxtLink to="/tools/image-upscaler" class="flex items-start space-x-3 p-3 rounded-lg hover:bg-slate-100 transition-colors">
+                    <div class="bg-blue-100 text-blue-600 w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75" />
+                      </svg></div>
+                    <div>
+                      <p class="font-semibold text-slate-800">Image Upscaler</p>
+                      <p class="text-sm text-slate-500">Increase photo resolution</p>
+                    </div>
+                  </NuxtLink>
+                  <a href="#" class="flex items-start space-x-3 p-3 rounded-lg hover:bg-slate-100 transition-colors">
+                    <div
+                      class="bg-blue-100 text-blue-600 w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
+                      </svg></div>
+                    <div>
+                      <p class="font-semibold text-slate-800">Code Assistant</p>
+                      <p class="text-sm text-slate-500">Write & debug code</p>
+                    </div>
+                  </a>
+                </div>
+                <div class="mt-4 border-t border-slate-200 pt-4">
+                  <a href="#tools"
+                    class="font-semibold text-blue-600 hover:text-blue-800 transition-colors flex items-center">View All
+                    Tools <span class="ml-2">&rarr;</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+
           <div class="group relative">
             <a href="#apps"
               class="text-slate-600 hover:text-blue-600 font-semibold px-4 py-2 rounded-lg transition-colors flex items-center">
@@ -146,6 +231,9 @@
               </div>
             </div>
           </div>
+
+
+          
         </nav>
 
         <a href="#"
