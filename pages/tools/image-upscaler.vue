@@ -96,12 +96,10 @@
                 <p class="text-lg text-slate-600 mt-4">Move your mouse over the images to see a magnified comparison.</p>
             </div>
 
-            <div 
-                class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-10"
+            <div  class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-10"
                 @mouseenter="isZoomVisible = true"
                 @mouseleave="isZoomVisible = false"
-                @mousemove="handleMouseMove"
-            >
+                @mousemove="handleMouseMove">
                 <div class="text-center">
                     <h3 class="font-bold text-slate-500 mb-2">Original</h3>
                     <div class="relative rounded-2xl shadow-xl overflow-hidden border-2 border-white" ref="beforeContainer">
@@ -134,7 +132,7 @@
             </div>
 
             
-            <Loading :isLoading="isLoading" />
+            <!-- <Loading :isLoading="isLoading" /> -->
             <ErrorMessage  :message="error" />
 
 

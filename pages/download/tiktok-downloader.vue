@@ -98,7 +98,7 @@
 
     </div>
 
-    <Loading :is-loading="loading"/>
+    <Loading :isLoading="loading"/>
 
 
 
@@ -273,7 +273,7 @@ import ErrorMessage from '~/components/ErrorMessage.vue';
 import Loading from '~/components/Loading.vue';
 
 import { ref } from 'vue';
-import axios from 'axios'
+import axios from 'axios';
 // ✅ DO this:
 const videoData = ref({
   bg_url: '',
