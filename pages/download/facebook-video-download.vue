@@ -45,76 +45,87 @@
                     the video to your device.</p>
             </div>
 
-            <div class="max-w-4xl mx-auto bg-white p-6 sm:p-8 rounded-lg border border-slate-200 shadow-lg">
-                <div class="grid md:grid-cols-3 gap-6 md:gap-8">
+            <div class="max-w-4xl mx-auto bg-white p-6 sm:p-8 rounded-xl border border-slate-200/80 shadow-xl shadow-blue-500/10">
 
-                    <div class="md:col-span-1">
-                        <img src="https://images.unsplash.com/photo-1633968562817-6d8b33393ac4?q=80&w=600&h=400&auto=format&fit=crop"
-                            alt="Video thumbnail" class="rounded-lg w-full object-cover aspect-video shadow-md">
+            <div class="grid md:grid-cols-5 gap-6 md:gap-10">
+
+                <div class="md:col-span-2 group overflow-hidden rounded-lg">
+                    <img :src="videoData.thumbnail" alt="Video thumbnail"
+                        class="rounded-lg w-full h-full object-cover aspect-video shadow-md transition-transform duration-300 ease-in-out group-hover:scale-105">
+                </div>
+
+                <div class="md:col-span-3 flex flex-col overflow-hidden">
+                    <div class="flex items-center gap-2">
+
+                        <div class="min-w-0">
+                            <span class="truncate block text-sm font-semibold text-slate-600">{{ videoData.page_name }}</span>
+                        </div>
+
+                        <svg class="w-4 h-4 text-blue-500 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                        </svg>
                     </div>
 
-                    <div class="md:col-span-2">
-                        <div class="flex items-center gap-3">
-                            <img src="https://i.imgur.com/kv3T2P9.jpg" alt="Author avatar"
-                                class="w-10 h-10 rounded-full">
-                            <span class="font-semibold text-slate-700">A Creator's Page</span>
-                        </div>
-                        <p class="mt-4 text-slate-600 line-clamp-2">{{ videoData.title }}</p>
+                    <p class="mt-2 text-2xl font-bold text-slate-800 line-clamp-2">{{ videoData.title }}</p>
 
-                        <div class="mt-6 border-t border-slate-200 pt-6">
-                            <p class="text-sm font-semibold text-slate-500 mb-3">Download Options:</p>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                <a href="#"
-                                    class="group flex items-center justify-center gap-2 w-full bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/20">
-                                    <svg class="w-5 h-5 transition-transform group-hover:-translate-y-0.5"
-                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                        <path
-                                            d="M10.75 2.75a.75.75 0 00-1.5 0v8.614L6.295 8.235a.75.75 0 10-1.09 1.03l4.25 4.5a.75.75 0 001.09 0l4.25-4.5a.75.75 0 00-1.09-1.03l-2.955 3.129V2.75z" />
-                                        <path
-                                            d="M3.5 12.75a.75.75 0 00-1.5 0v2.5A2.75 2.75 0 004.75 18h10.5A2.75 2.75 0 0018 15.25v-2.5a.75.75 0 00-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5z" />
-                                    </svg>
-                                    <div>
-                                        <span class="block leading-tight">Download HD</span>
-                                        <span class="block text-xs opacity-70 leading-tight">(Est. 18.5 MB)</span>
-                                    </div>
-                                </a>
-                                <a href="#"
-                                    class="group flex items-center justify-center gap-2 w-full bg-white text-slate-700 font-semibold py-3 px-4 rounded-lg hover:bg-slate-200 transition-all border border-slate-300">
-                                    <svg class="w-5 h-5 transition-transform group-hover:-translate-y-0.5"
-                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                        <path
-                                            d="M10.75 2.75a.75.75 0 00-1.5 0v8.614L6.295 8.235a.75.75 0 10-1.09 1.03l4.25 4.5a.75.75 0 001.09 0l4.25-4.5a.75.75 0 00-1.09-1.03l-2.955 3.129V2.75z" />
-                                        <path
-                                            d="M3.5 12.75a.75.75 0 00-1.5 0v2.5A2.75 2.75 0 004.75 18h10.5A2.75 2.75 0 0018 15.25v-2.5a.75.75 0 00-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5z" />
-                                    </svg>
-                                    <div>
-                                        <span class="block leading-tight">Download SD</span>
-                                        <span class="block text-xs text-slate-500 leading-tight">(Est. 8.2 MB)</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <a href="#"
-                                class="group flex items-center justify-center gap-2 w-full bg-emerald-100 text-emerald-800 font-semibold py-3 px-4 rounded-lg hover:bg-emerald-200 transition-all mt-3">
+                    <div class="flex-grow"></div>
+
+                    <div class="mt-6 border-t border-slate-200 pt-6">
+                        <p class="text-sm font-semibold text-slate-500 mb-3">Download Options:</p>
+
+                        <div class="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-3">
+
+                            <a v-if="hd_url" href="javascript:void(0)" @click="download(hd_url)"
+                                class="group flex items-center justify-center gap-2 w-full bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/20">
                                 <svg class="w-5 h-5 transition-transform group-hover:-translate-y-0.5"
                                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                    <path d="M7 4a3 3 0 016 0v6a3 3 0 11-6 0V4z" />
-                                    <path
-                                        d="M5.5 8.5a.5.5 0 01.5.5v1a3.5 3.5 0 007 0v-1a.5.5 0 011 0v1a4.5 4.5 0 01-4.5 4.475V16.5a.5.5 0 01-1 0v-1.525A4.5 4.5 0 014.5 10v-1a.5.5 0 01.5-.5z" />
+                                    <path d="M10.75 2.75a.75.75 0 00-1.5 0v8.614L6.295 8.235a.75.75 0 10-1.09 1.03l4.25 4.5a.75.75 0 001.09 0l4.25-4.5a.75.75 0 00-1.09-1.03l-2.955 3.129V2.75z" />
+                                    <path d="M3.5 12.75a.75.75 0 00-1.5 0v2.5A2.75 2.75 0 004.75 18h10.5A2.75 2.75 0 0018 15.25v-2.5a.75.75 0 00-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5z" />
                                 </svg>
                                 <div>
-                                    <span class="block leading-tight">Download MP3 Audio</span>
-                                    <span class="block text-xs text-emerald-600 leading-tight">(Est. 2.1 MB)</span>
+                                    <span class="block leading-tight">Download HD</span>
+                                </div>
+                            </a>
+
+                            <a v-if="sd_url" href="javascript:void(0)" @click="download(sd_url)"
+                                class="group flex items-center justify-center gap-2 w-full bg-slate-50 text-slate-700 font-semibold py-3 px-4 rounded-lg hover:bg-slate-100 hover:border-slate-400 transition-all border border-slate-300">
+                                <svg class="w-5 h-5 transition-transform group-hover:-translate-y-0.5"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path d="M10.75 2.75a.75.75 0 00-1.5 0v8.614L6.295 8.235a.75.75 0 10-1.09 1.03l4.25 4.5a.75.75 0 001.09 0l4.25-4.5a.75.75 0 00-1.09-1.03l-2.955 3.129V2.75z" />
+                                    <path d="M3.5 12.75a.75.75 0 00-1.5 0v2.5A2.75 2.75 0 004.75 18h10.5A2.75 2.75 0 0018 15.25v-2.5a.75.75 0 00-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5z" />
+                                </svg>
+                                <div>
+                                    <span class="block leading-tight">Download SD</span>
                                 </div>
                             </a>
                         </div>
+
+                        <a v-if="audio_only_url" href="javascript:void(0)" @click="download(audio_only_url)"
+                            class="group flex items-center justify-center gap-2 w-full bg-emerald-100 text-emerald-800 font-semibold py-3 px-4 rounded-lg hover:bg-emerald-200 transition-all mt-3">
+                            <svg class="w-5 h-5 transition-transform group-hover:-translate-y-0.5"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M7 4a3 3 0 016 0v6a3 3 0 11-6 0V4z" />
+                                <path d="M5.5 8.5a.5.5 0 01.5.5v1a3.5 3.5 0 007 0v-1a.5.5 0 011 0v1a4.5 4.5 0 01-4.5 4.475V16.5a.5.5 0 01-1 0v-1.525A4.5 4.5 0 014.5 10v-1a.5.5 0 01.5-.5z" />
+                            </svg>
+                            <div>
+                                <span class="block leading-tight">Download MP3 Audio</span>
+                            </div>
+                        </a>
                     </div>
                 </div>
-                <div class="mt-12 text-center">
-                    <a href="#" class="font-semibold text-blue-600 hover:text-blue-800 transition-colors group">
-                        &larr; Download Another Video
-                    </a>
-                </div>
             </div>
+
+            <div class="mt-8 pt-6 border-t border-slate-200/80 text-center">
+                <a href="javascript:void(0)" @click="reset" class="font-semibold text-blue-600 hover:text-blue-800 transition-colors group inline-block">
+                    <span class="flex items-center gap-2">
+                        <svg class="w-5 h-5 transition-transform group-hover:-translate-x-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
+                        </svg>
+                        Download Another Video
+                    </span>
+                </a>
+            </div>
+        </div>
         </div>
 
 
@@ -225,7 +236,7 @@
         <div class="container mx-auto px-6">
             <div class="grid lg:grid-cols-2 gap-12 items-center">
                 <div class="animate-on-scroll">
-                    <img src="https://images.unsplash.com/photo-1554426577-9426c167AA30?q=80&w=800&auto=format&fit=crop"
+                    <img src="/images/download/Facebook-video-download.png"
                         alt="Person watching video on a phone" class="rounded-2xl shadow-xl w-full">
                 </div>
                 <div class="animate-on-scroll" style="animation-delay: 150ms;">
@@ -329,6 +340,8 @@
             </div>
         </div>
     </section>
+
+
 </template>
 
 
@@ -345,16 +358,22 @@ const loading = ref(false)
 const errmessage = ref('')
 const inputUrl = ref('')
 const videoData = ref<{
+  page_name: string
   title: string
+  thumbnail: string
   formats: { format: string; url: string }[]
 }>({
+  page_name: '',
   title: '',
+  thumbnail: '',
   formats: [],
 })
 
 const audio_only_url = ref('')
 const sd_url = ref('')
 const hd_url = ref('')
+
+
 
 const submitForm = async () => {
     
@@ -374,7 +393,7 @@ const submitForm = async () => {
         videoData.value = res.data
         extractVideoUrls()
         outputUrl.value = true
-        // console.log(videoData.value.formats)
+        console.log(videoData.value)
 
 
     } catch (error) {
@@ -394,7 +413,9 @@ const extractVideoUrls = () => {
   for (const item of videoData.value.formats) {
     const format = item.format.toLowerCase()
 
-    if (!audio_only_url.value && format.includes('audio only')) {
+    console.log("format", format)
+
+    if (!audio_only_url.value && format.includes('audio')) {
       audio_only_url.value = item.url
       count++
     } else if (!sd_url.value && format.startsWith('sd')) {
@@ -408,11 +429,31 @@ const extractVideoUrls = () => {
     if (count >= 3) break
   }
 
-  console.log(audio_only_url.value)
-  console.log(sd_url.value)
-  console.log(hd_url.value)
+//   console.log("audio_only_url",audio_only_url.value)
+//   console.log("sd_url",sd_url.value)
+//   console.log("hd_url ",hd_url.value)
 }
 
+const download = (url: string) => {
+    const encoded = encodeURIComponent(url)
+    window.location.href = `http://127.0.0.1:8000/download-proxy?url=${encoded}`
+}
+
+
+const reset = () => {
+  outputUrl.value = false
+  errmessage.value = ''
+  inputUrl.value = ''
+  videoData.value = {
+    page_name: '',
+    title: '',
+    thumbnail: '',
+    formats: []
+  }
+  audio_only_url.value = ''
+  sd_url.value = ''
+  hd_url.value = ''
+}
 
 
 
