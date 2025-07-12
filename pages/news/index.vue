@@ -5,8 +5,10 @@
         <NewsSectionsFirstLayout  />
         <LazyNewsSectionsSecondLayoutVue />
         <LazyNewsSectionsScrollLayout api-url="http://127.0.0.1:8000/api/test" />
-        <!-- <LazyNewsSectionsScrollLayout api-url="https://api.restful-api.dev/objects/5" /> -->
       </div>
+      <aside class="lg:col-span-1">
+        <NewsWidgetsLeft />
+      </aside>
     </div>
   </div>
 </template>
