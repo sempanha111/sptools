@@ -4,7 +4,10 @@ export default defineNuxtConfig({
     '@nuxtjs/sitemap'
   ],
   css: [
-    '~/assets/css/main.css'
+    '~/assets/css/main.css',
+    'swiper/css',
+    'swiper/css/navigation',
+    'swiper/css/pagination'
   ],
   sitemap: {
     sitemapName: 'sitemap.xml',

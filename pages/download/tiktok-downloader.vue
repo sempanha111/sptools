@@ -269,8 +269,6 @@
 
 <script lang="ts" setup>
 
-import ErrorMessage from '~/components/ErrorMessage.vue';
-import Loading from '~/components/Loading.vue';
 
 import { ref } from 'vue';
 import axios from 'axios';

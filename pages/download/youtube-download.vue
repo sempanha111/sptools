@@ -37,31 +37,38 @@
 
                     <div class="md:col-span-2">
                         <div class="flex border-b border-slate-200 mb-4">
-                            <button
-                                class="font-semibold py-2 px-4 border-b-2 border-red-600 text-red-600">Video</button>
-                            <button class="font-semibold py-2 px-4 text-slate-500 hover:text-red-600">Audio</button>
+                            <button @click="selectedTab = 'video'" :class="['font-semibold py-2 px-4 border-b-2 rounded-t-md',
+                                selectedTab === 'video'
+                                    ? 'border-red-600 text-red-600 bg-slate-100'
+                                    : 'border-transparent text-slate-500 hover:text-red-600'
+                            ]">
+                                Video
+                            </button>
+                            <button @click="selectedTab = 'audio'" :class="['font-semibold py-2 px-4 border-b-2 rounded-t-md',
+                                selectedTab === 'audio'
+                                    ? 'border-red-600 text-red-600 bg-slate-100'
+                                    : 'border-transparent text-slate-500 hover:text-red-600'
+                            ]">
+                                Audio
+                            </button>
                         </div>
 
+
+                        <template v-if="selectedTab === 'video'" >
+                        <!-- Video Body -->
                         <div class="space-y-3">
                             <div v-for="(formats, resolution) in groupedByResolution" :key="resolution">
                                 <!-- Resolution Header (toggle dropdown) -->
-                                <button
-                                @click="expandedResolutions[resolution] = !expandedResolutions[resolution]"
-                                class="w-full cursor-pointer flex justify-between items-center bg-slate-50 p-3 rounded-md font-semibold text-slate-700 mb-2"
-                                >
-                                <span>{{ resolution }}</span>
-                                <svg class="w-5 h-5 transition-transform"
-                                    :class="{ 'rotate-180': expandedResolutions[resolution] }"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20"
-                                    fill="currentColor"
-                                >
-                                    <path
-                                    fill-rule="evenodd"
-                                    d="M5.23 7.21a.75.75 0 011.06 0L10 10.92l3.72-3.71a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.23 8.27a.75.75 0 010-1.06z"
-                                    clip-rule="evenodd"
-                                    />
-                                </svg>
+                                <button @click="expandedResolutions[resolution] = !expandedResolutions[resolution]"
+                                    class="w-full cursor-pointer flex justify-between items-center bg-slate-50 p-3 rounded-md font-semibold text-slate-700 mb-2">
+                                    <span>{{ resolution }}</span>
+                                    <svg class="w-5 h-5 transition-transform"
+                                        :class="{ 'rotate-180': expandedResolutions[resolution] }"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd"
+                                            d="M5.23 7.21a.75.75 0 011.06 0L10 10.92l3.72-3.71a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.23 8.27a.75.75 0 010-1.06z"
+                                            clip-rule="evenodd" />
+                                    </svg>
                                 </button>
 
                                 <!-- Table for formats under each resolution -->
@@ -75,20 +82,21 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr v-for="format in formats" :key="format.itag" class="border-b border-slate-200">
+                                            <tr v-for="format in formats" :key="format.itag"
+                                                class="border-b border-slate-200">
                                                 <td class="py-3 px-2 font-medium">
                                                     {{ format.container.toUpperCase() }}
-                                                    <span class="text-slate-400">({{ format.video_codec.split('.')[0] }})</span>
+                                                    <span class="text-slate-400">({{ format.video_codec.split('.')[0]
+                                                        }})</span>
                                                 </td>
                                                 <td class="py-3 px-2">
-                                                    {{ format.filesize_mb + 15 < 1000
-                                                        ? format.filesize_mb.toFixed(2) + ' MB'
-                                                        : (format.filesize_mb / 1024).toFixed(2) + ' GB' }}
-                                                </td>
+                                                    {{ format.filesize_mb + 15 < 1000 ? format.filesize_mb.toFixed(2)
+                                                        + ' MB' : (format.filesize_mb / 1024).toFixed(2) + ' GB' }}
+                                                        </td>
 
                                                 <td class="py-3 px-2 text-right">
                                                     <a href="javascript:void(0)" @click="openDownloadModal(format)"
-                                                    class="bg-red-600 text-white font-bold px-3 py-1 rounded-md text-xs hover:bg-red-700">
+                                                        class="bg-red-600 text-white font-bold px-3 py-1 rounded-md text-xs hover:bg-red-700">
                                                         Download
                                                     </a>
                                                 </td>
@@ -99,11 +107,55 @@
 
                             </div>
                         </div>
+
+                        </template>
+                        <template v-else>
+
+                        <!-- Audio Body -->
+                        <div  class="md:col-span-2">
+                
+                            <!-- Audio Table -->
+                            <div class="p-2">
+                                <table class="w-full text-sm text-left">
+                                    <thead class="text-xs text-slate-500 uppercase border-b border-slate-200">
+                                        <tr>
+                                            <th class="py-2 px-2">Bitrate</th>
+                                            <th class="py-2 px-2">Format</th>
+                                            <th class="py-2 px-2">Filesize</th>
+                                            <th class="py-2 px-2 text-right">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="format in videoData.audio_options" :key="format.itag"
+                                            class="border-b border-slate-100">
+                                            <td class="py-3 px-2 font-medium">{{ format.abr }}</td>
+                                            <td class="py-3 px-2">
+                                                {{ format.audio_codec.toUpperCase() }}
+                                            </td>
+                                            <td class="py-3 px-2">
+                                                {{ format.filesize_mb + 15 < 1000 ? format.filesize_mb.toFixed(2)
+                                                    + ' MB' : (format.filesize_mb / 1024).toFixed(2) + ' GB' }} </td>
+                                            <td class="py-3 px-2 text-right">
+                                                <a href="javascript:void(0)" @click="DownloadAudio(format.itag)"
+                                                    class="bg-red-600 text-white font-bold px-3 py-1 rounded-md text-xs hover:bg-red-700">
+                                                    Download
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        </template>
+
+
                     </div>
                 </div>
 
                 <div class="mt-8 pt-6 border-t border-slate-200 text-center">
-                    <a href="javascript:void(0)" @click="reset" class="font-semibold text-blue-600 hover:text-blue-800 transition-colors group">
+                    <a href="javascript:void(0)" @click="reset"
+                        class="font-semibold text-blue-600 hover:text-blue-800 transition-colors group">
                         &larr; Download Another Video
                     </a>
                 </div>
@@ -116,23 +168,23 @@
             <div class="bg-white rounded-xl max-w-sm w-full shadow-xl p-6 text-left animate-fade-in">
 
                 <template v-if="!showProgress">
-                <h3 class="text-xl font-bold text-slate-900 mb-2">Confirm Download</h3>
-                <p class="text-slate-600 text-sm mb-4">You're about to download:</p>
-                <ul class="text-slate-700 text-sm mb-4">
-                    <!-- <li><strong>Resolution:</strong> {{ selectedFormat?.resolution }}</li> -->
-                    <li><strong>Format:</strong> {{ selectedFormat?.container.toUpperCase() }}</li>
-                    <li><strong>Filesize:</strong> {{ formatSize(selectedFormat?.filesize_mb) }}</li>
-                </ul>
-                <div class="flex justify-end space-x-3">
-                    <button @click="showModal = false"
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Confirm Download</h3>
+                    <p class="text-slate-600 text-sm mb-4">You're about to download:</p>
+                    <ul class="text-slate-700 text-sm mb-4">
+                        <!-- <li><strong>Resolution:</strong> {{ selectedFormat?.resolution }}</li> -->
+                        <li><strong>Format:</strong> {{ selectedFormat?.container.toUpperCase() }}</li>
+                        <li><strong>Filesize:</strong> {{ formatSize(selectedFormat?.filesize_mb) }}</li>
+                    </ul>
+                    <div class="flex justify-end space-x-3">
+                        <button @click="showModal = false"
                             class="px-4 py-2 rounded-md text-sm font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200">
-                    Cancel
-                    </button>
-                    <button @click="confirmDownload"
+                            Cancel
+                        </button>
+                        <button @click="confirmDownload"
                             class="px-4 py-2 rounded-md text-sm font-semibold bg-red-600 text-white hover:bg-red-700">
-                    OK
-                    </button>
-                </div>
+                            OK
+                        </button>
+                    </div>
                 </template>
 
                 <template v-else>
@@ -140,13 +192,16 @@
 
                     <!-- Progress Bar -->
                     <div class="w-full bg-slate-200 h-3 rounded-full overflow-hidden mb-4">
-                        <div class="bg-red-600 h-full transition-all duration-300 ease-in-out" :style="{ width: progress + '%' }"></div>
+                        <div class="bg-red-600 h-full transition-all duration-300 ease-in-out"
+                            :style="{ width: progress + '%' }"></div>
                     </div>
                     <p class="text-center text-sm text-slate-600 mb-6">{{ progress.toFixed(0) }}%</p>
 
                     <!-- Spinner and Message -->
                     <div v-if="showProgressing" class="flex flex-col items-center justify-center mt-6">
-                        <div class="w-14 h-14 border-[5px] border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+                        <div
+                            class="w-14 h-14 border-[5px] border-blue-500 border-t-transparent rounded-full animate-spin">
+                        </div>
                         <p class="mt-4 text-slate-700 text-base font-medium">Processing video, please wait...</p>
                     </div>
                 </template>
@@ -320,7 +375,8 @@
             <div class="space-y-4">
                 <details class="bg-white p-6 rounded-lg group border-2 border-slate-200 hover:border-red-300">
                     <summary
-                        class="flex justify-between items-center font-semibold text-slate-800 cursor-pointer text-lg">Is
+                        class="flex justify-between items-center font-semibold text-slate-800 cursor-pointer text-lg">
+                        Is
                         it legal to download YouTube videos? <span
                             class="plus-icon text-red-500 text-2xl transform transition-transform duration-300 group-open:rotate-135">+</span>
                     </summary>
@@ -341,6 +397,8 @@
             </div>
         </div>
     </section>
+
+
 </template>
 
 <script lang="ts" setup>
@@ -355,125 +413,145 @@ const outputurl = ref(false)
 const loading = ref(false)
 
 const videoData = ref<{
-  title: string
-  channel_name: string
-  thumbnail_url: string
-  video_options: {
-    container: string
-    filesize_mb: number
-    fps: number
-    itag: number
-    resolution: string
-    video_codec: string
-  }[]
+    title: string
+    channel_name: string
+    thumbnail_url: string
+    video_options: {
+        container: string
+        filesize_mb: number
+        fps: number
+        itag: number
+        resolution: string
+        video_codec: string
+    }[]
+    audio_options: {
+        itag: number
+        type: string
+        abr: string
+        audio_codec: string
+        filesize_mb: number
+    }[]
 }>({
-  title: '',
-  channel_name: '',
-  thumbnail_url: '',
-  video_options: []
-})
-
-const groupedByResolution = ref<{
-  [resolution: string]: {
-    fps: number
-    itag: number
-    video_codec: string
-    filesize_mb: number
-    container: string
-  }[]
-}>({})
-
-const expandedResolutions = ref<{ [resolution: string]: boolean }>({})
-
-const submitForm = async () => {
-  if (!inputUrl.value) {
-    alert('Please Input Link Youtube')
-    return
-  }
-
-  loading.value = true
-
-  try {
-    const res = await axios.get('http://127.0.0.1:8000/youtube-download/options', {
-      params: { url: inputUrl.value }
-    })
-
-    outputurl.value = true
-    videoData.value = res.data
-    extractVideoUrls()
-  } catch (error) {
-    console.error('Error:', error)
-  } finally {
-    loading.value = false
-  }
-}
-
-const extractVideoUrls = () => {
-  groupedByResolution.value = {}
-
-  for (const item of videoData.value.video_options) {
-    const res = item.resolution
-    if (!groupedByResolution.value[res]) {
-      groupedByResolution.value[res] = []
-    }
-
-    groupedByResolution.value[res].push({
-      fps: item.fps,
-      itag: item.itag,
-      video_codec: item.video_codec,
-      filesize_mb: item.filesize_mb,
-      container: item.container
-    })
-  }
-
-  // Initialize dropdown expanded state
-  expandedResolutions.value = {}
-  for (const resolution in groupedByResolution.value) {
-    expandedResolutions.value[resolution] = false // open by default
-  }
-
-  console.log(expandedResolutions.value)
-}
-
-const Download = async (itag: number) => {
-  try {
-    const response = await fetch(
-      'http://127.0.0.1:8000/youtube-download/download?' +
-        new URLSearchParams({
-          url: inputUrl.value,
-          itag: itag.toString()
-        }),
-      {
-        method: 'GET'
-      }
-    )
-
-    const blob = await response.blob()
-    const filename = `${videoData.value.title} video.mp4`
-
-    const link = document.createElement('a')
-    link.href = URL.createObjectURL(blob)
-    link.download = filename
-    link.click()
-
-    URL.revokeObjectURL(link.href)
-    showModal.value = false
-  } catch (err) {
-    console.error('Download failed', err)
-  }
-}
-
-const reset = () => {
-  outputurl.value = false
-  inputUrl.value = ''
-  videoData.value = {
     title: '',
     channel_name: '',
     thumbnail_url: '',
-    video_options: []
-  }
-  groupedByResolution.value = {}
-  expandedResolutions.value = {}
+    video_options: [],
+    audio_options: []
+})
+
+const groupedByResolution = ref<{
+    [resolution: string]: {
+        fps: number
+        itag: number
+        video_codec: string
+        filesize_mb: number
+        container: string
+    }[]
+}>({})
+
+const expandedResolutions = ref<{
+    [resolution: string]: boolean
+}>({})
+
+
+
+const submitForm = async () => {
+    if (!inputUrl.value) {
+        alert('Please Input Link Youtube')
+        return
+    }
+
+    loading.value = true
+
+    try {
+        const res = await axios.get('http://127.0.0.1:8000/youtube-download/options', {
+            params: { url: inputUrl.value }
+        })
+
+        outputurl.value = true
+        videoData.value = res.data
+        extractVideoUrls()
+        console.log(videoData.value)
+    } catch (error) {
+        console.error('Error:', error)
+    } finally {
+        loading.value = false
+    }
+}
+
+
+const selectedTab = ref('video')
+// const selectedTab = () => {
+
+// }
+
+
+const extractVideoUrls = () => {
+    groupedByResolution.value = {}
+
+    for (const item of videoData.value.video_options) {
+        const res = item.resolution
+        if (!groupedByResolution.value[res]) {
+            groupedByResolution.value[res] = []
+        }
+
+        groupedByResolution.value[res].push({
+            fps: item.fps,
+            itag: item.itag,
+            video_codec: item.video_codec,
+            filesize_mb: item.filesize_mb,
+            container: item.container
+        })
+    }
+
+    // Initialize dropdown expanded state
+    expandedResolutions.value = {}
+    for (const resolution in groupedByResolution.value) {
+        expandedResolutions.value[resolution] = false // open by default
+    }
+
+}
+
+const Download = async (itag: number) => {
+    try {
+        const response = await fetch(
+            'http://127.0.0.1:8000/youtube-download/download?' +
+            new URLSearchParams({
+                url: inputUrl.value,
+                itag: itag.toString()
+            }),
+            {
+                method: 'GET'
+            }
+        )
+
+        const blob = await response.blob()
+        const filename = `${videoData.value.title} video.mp4`
+
+        const link = document.createElement('a')
+        link.href = URL.createObjectURL(blob)
+        link.download = filename
+        link.click()
+
+        URL.revokeObjectURL(link.href)
+        showModal.value = false
+    } catch (err) {
+        console.error('Download failed', err)
+    }
+}
+
+const reset = () => {
+    outputurl.value = false
+    inputUrl.value = ''
+    videoData.value = {
+        title: '',
+        channel_name: '',
+        thumbnail_url: '',
+        video_options: [],
+        audio_options: []
+    }
+    groupedByResolution.value = {}
+    expandedResolutions.value = {}
 }
 
 const showModal = ref(false)
@@ -483,19 +561,19 @@ const progress = ref(0)
 const showProgressing = ref(false)
 let progressInterval: ReturnType<typeof setInterval> | null = null
 
-    const openDownloadModal = (format: any) => {
-        selectedFormat.value = format
-        showModal.value = true
-        showProgress.value = false
-        progress.value = 0
-    }
+const openDownloadModal = (format: any) => {
+    selectedFormat.value = format
+    showModal.value = true
+    showProgress.value = false
+    progress.value = 0
+}
+
 
 const confirmDownload = () => {
     Download(selectedFormat.value.itag)
     showProgress.value = true
 
     const sizeMb = selectedFormat.value?.filesize_mb
-    console.log(sizeMb)
     const estimatedTime = Math.max(19000, Math.min(sizeMb * 750, 28000)) // Simulate 2s–8s
 
 
@@ -515,23 +593,96 @@ const confirmDownload = () => {
 }
 
 const formatSize = (sizeMb?: number) => {
-  if (!sizeMb) return ''
-  return sizeMb < 1000
-    ? sizeMb.toFixed(2) + ' MB'
-    : (sizeMb / 1024).toFixed(2) + ' GB'
+    if (!sizeMb) return ''
+    return sizeMb < 1000
+        ? sizeMb.toFixed(2) + ' MB'
+        : (sizeMb / 1024).toFixed(2) + ' GB'
 }
+
+
+// const openDownloadModalAudio = (format: any) => {
+//     selectedFormat.value = format
+//     showModal.value = true
+//     showProgress.value = false
+// }
+
+const DownloadAudio = async (itag: number) => {
+    try {
+        const response = await fetch(
+            'http://127.0.0.1:8000/youtube-download/audio?' +
+            new URLSearchParams({
+                url: inputUrl.value,
+                itag: itag.toString()
+            }),
+            {
+                method: 'GET'
+            }
+        )
+
+        if (!response.ok) {
+            throw new Error('Download failed: ' + response.statusText)
+        }
+
+        const blob = await response.blob()
+
+        // ✅ Extract filename from Content-Disposition header
+        let filename = 'audio.mp3'
+        const disposition = response.headers.get('Content-Disposition')
+
+        if (disposition) {
+            // 1. Decode RFC5987 (filename*=utf-8'')
+            const encodedMatch = disposition.match(/filename\*=utf-8''(.+)/i)
+            if (encodedMatch && encodedMatch[1]) {
+                filename = decodeURIComponent(encodedMatch[1])
+            } else {
+                // 2. Fallback: filename="..."
+                const fallbackMatch = disposition.match(/filename="?([^"]+)"?/)
+                if (fallbackMatch && fallbackMatch[1]) {
+                    filename = fallbackMatch[1]
+                }
+            }
+
+            // 3. Extract extension
+            const ext = filename.substring(filename.lastIndexOf('.'))
+
+            // 4. Use your custom title with the extracted extension
+            filename = `${videoData.value.title}${ext}`
+        }
+
+        // // ✅ Create and click download link
+        const link = document.createElement('a')
+        link.href = URL.createObjectURL(blob)
+        link.download = filename
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+        URL.revokeObjectURL(link.href)
+
+        showModal.value = false
+    } catch (err) {
+        console.error('Download failed', err)
+    }
+}
+
 
 
 </script>
 
 
 <style scoped>
-    @keyframes fade-in {
-    from { opacity: 0; transform: scale(0.95); }
-    to { opacity: 1; transform: scale(1); }
-    }
-    .animate-fade-in {
-    animation: fade-in 0.2s ease-out;
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
     }
 
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.animate-fade-in {
+    animation: fade-in 0.2s ease-out;
+}
 </style>
