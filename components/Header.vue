@@ -20,20 +20,7 @@
               class="absolute top-full -left-1/2 mt-3 w-screen max-w-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:translate-y-0 translate-y-2">
               <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-6">
                 <div class="grid grid-cols-2 gap-6">
-                  <a href="#" class="flex items-start space-x-3 p-3 rounded-lg hover:bg-slate-100 transition-colors">
-                    <div
-                      class="bg-blue-100 text-blue-600 w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                        stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                          d="M6.75 7.5l3 2.25-3 2.25m3 0h3m-3 2.25l3 2.25M16.5 7.5l3 2.25-3 2.25m3 0h3m-3 2.25l3 2.25M12 21v-2.25m0 .383l-.621.622a2.25 2.25 0 01-3.182 0l-1.94-1.94a2.25 2.25 0 010-3.182l6.22-6.22a2.25 2.25 0 013.182 0l1.94 1.94a2.25 2.25 0 010 3.182l-6.22 6.22a2.25 2.25 0 01-3.182 0z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <p class="font-semibold text-slate-800">AI Writer</p>
-                      <p class="text-sm text-slate-500">Generate marketing copy</p>
-                    </div>
-                  </a>
+  
 
 
                   <NuxtLink to="/tools/bg-remover"
@@ -70,21 +57,9 @@
                       <p class="text-sm text-slate-500">Increase photo resolution</p>
                     </div>
                   </NuxtLink>
-                  <a href="#" class="flex items-start space-x-3 p-3 rounded-lg hover:bg-slate-100 transition-colors">
-                    <div
-                      class="bg-blue-100 text-blue-600 w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                        stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                          d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
-                      </svg>
-                    </div>
-                    <div>
-                      <p class="font-semibold text-slate-800">Code Assistant</p>
-                      <p class="text-sm text-slate-500">Write & debug code</p>
-                    </div>
-                  </a>
                 </div>
+
+                
                 <div class="mt-4 border-t border-slate-200 pt-4">
                   <a href="#tools"
                     class="font-semibold text-blue-600 hover:text-blue-800 transition-colors flex items-center">View All
